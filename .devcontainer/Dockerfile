@@ -1,5 +1,5 @@
 # Note: You can use any Debian/Ubuntu based image you want. 
-FROM debian:stable-slim
+FROM python:3.9-buster
 
 # [Option] Install zsh
 ARG INSTALL_ZSH="true"
@@ -10,8 +10,8 @@ ARG ENABLE_NONROOT_DOCKER="true"
 
 # Install needed packages and setup non-root user. Use a separate RUN statement to add your own dependencies.
 ARG USERNAME=vscode
-# ARG USER_UID=1000
-# ARG USER_GID=$USER_UID
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
 ARG SOURCE_SOCKET=/var/run/docker-host.sock
 ARG TARGET_SOCKET=/var/run/docker.sock
 COPY library-scripts/*.sh /tmp/library-scripts/
@@ -31,3 +31,8 @@ CMD [ "sleep", "infinity" ]
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
+
+RUN pip install \
+    flake8==3.8.4 \
+    mypy \
+    black

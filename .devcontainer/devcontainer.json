@@ -10,13 +10,13 @@
 		"source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind"
 	],
 	"overrideCommand": false,
-	
-	// Use this environment variable if you need to bind mount your local source code into a new container.
 	"remoteEnv": {
-		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+		// Use this environment variable if you need to bind mount your local source code into a new container.
+		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
+		"MYPY_CACHE_DIR": "/tmp/.mypy_cache"
 	},
 	// Set *default* container specific settings.json values on container create.
-	"settings": { 
+	"settings": {
 		"terminal.integrated.shell.linux": "/bin/bash"
 	},
 	// Add the IDs of extensions you want installed when the container is created.
