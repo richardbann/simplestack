@@ -36,3 +36,10 @@ RUN pip install \
     flake8==3.8.4 \
     mypy \
     black
+
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends \
+    vim \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --chown=${USER_UID}:${USER_GID} .bashrc /home/${USERNAME}/
